@@ -2,10 +2,10 @@
 
 Dyma app syml sydd bob awr yn
 
-1 Taflu deis i drydar. Yn trydar unwaith pob 8 awr ar gyfartaledd
-2 Dewis dihareb ar hap
-3 Dewis llun ar hap, a rhoi'r ddihareb ar y llun
-4 Anfon y llun a'r ddihareb i Twitter  
+1. Taflu deis i drydar. Yn trydar unwaith pob 8 awr ar gyfartaledd
+2. Dewis dihareb ar hap
+3. Dewis llun ar hap, a rhoi'r ddihareb ar y llun
+4. Anfon y llun a'r ddihareb i Twitter  
 
 ### A simple twitter bot to tweet Welsh sayings
 
