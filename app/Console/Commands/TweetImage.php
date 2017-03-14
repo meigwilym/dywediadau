@@ -48,12 +48,17 @@ class TweetImage extends Command
         $contents = fread($handle, filesize($imagePath));
         fclose($handle);
 
-        $response = \Twitter::uploadMedia(['media' => $contents]);
+        if(\App::environment('production'))
+        {
+            $response = \Twitter::uploadMedia(['media' => $contents]);
 
-        \Log::info('posted image', [$response->media_id]);
-
-        unlink($imagePath);
+            \Log::info('posted image', [$response->media_id]);
+            
+            unlink($imagePath);
+            return $response->media_id_string;
+        }
         
-        return $response->media_id_string;
+        return;
+        
     }
 }
