@@ -46,11 +46,10 @@ class TweetPost extends Command
         // get random saying
         $saying = $this->sayings->getRandom();
         
-        $media_id_string = $this->call('tweet:image', ['saying' => $saying]);
-        
         // send to twitter 
         if(\App::environment('production'))
         {
+            $media_id_string = $this->call('tweet:image', ['saying' => $saying]);
             \Twitter::postTweet(['status' => $saying, 'media_ids' => $media_id_string]);
         } 
         $this->info('Posted "'.$saying.'"');

@@ -31,7 +31,7 @@ class Images {
 
         $lines = $this->textToLines($text);
         
-        $pos = $this->calcPositions($lines);
+        $pos = $this->calcPositions(count($lines));
         $fSize = $this->fontSize;
 
         foreach($lines as $i => $line) 
@@ -41,7 +41,7 @@ class Images {
                 $font->size($fSize);
                 $font->color('#ffffff');
                 $font->align('center');
-                $font->valign('top');
+                $font->valign('bottom');
             });
         }
         
@@ -59,38 +59,18 @@ class Images {
         return explode("|", $string);
     }
 
-    private function calcPositions($lines)
+    /**
+     * 
+     **/
+    private function calcPositions($lineCount)
     {
         $pos = [];
-        $middle = round($this->y/2) - round($this->fontSize/2) + 10;
-
-        switch(count($lines))
+        $lineHeight = round($this->fontSize*1.1); 
+        
+        for($i=0;$i<$lineCount;$i++) 
         {
-            case 1:
-                $pos[] = $middle;
-                break;
-            case 2:
-                $pos[] = round($this->y/2) - 2 - $this->fontSize;
-                $pos[] = round($this->y/2);
-                break;
-            case 3:
-                $pos[] = $middle - 4 - $this->fontSize;
-                $pos[] = $middle;
-                $pos[] = $middle + 4 + $this->fontSize;
-                break;
-            case 4:
-                $pos[] = round($this->y/2) - 2 - (2*$this->fontSize);
-                $pos[] = round($this->y/2) - 2 - $this->fontSize;
-                $pos[] = round($this->y/2);
-                $pos[] = round($this->y/2) + 2 + $this->fontSize;
-            case 5:
-                $pos[] = $middle - 4 - (2*$this->fontSize);
-                $pos[] = $middle - 4 - $this->fontSize;
-                $pos[] = $middle;
-                $pos[] = $middle + 4 + $this->fontSize;
-                $pos[] = $middle + 4 + (2*$this->fontSize);
+            $pos[] = ($i * $lineHeight) + (round($this->y/2) + $lineHeight) - ($lineCount * round(($lineHeight/2)));
         }
-
         return $pos;
     }
 }
